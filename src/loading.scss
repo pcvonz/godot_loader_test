@@ -1,0 +1,184 @@
+/* Circle spinner (status indeterminate) */
+.logo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.logo > svg {
+  border-radius: 0;
+  width: 67%; }
+
+.blue {
+  stroke: #478CBF; }
+
+.lightblue {
+  stroke: #56a7e4; }
+
+.lighterblue {
+  stroke: #7dc0f2; }
+
+.lightestblue {
+  stroke: #afd5f2; }
+
+#status-indeterminate, #status-progress {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border: 10px solid white;
+  border-radius: 100%;
+  visibility: visible; }
+
+#status-progress {
+  flex-direction: column; }
+
+svg {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  position: absolute;
+  stroke-width: 10px; }
+
+.anim {
+  animation-duration: 3s;
+  animation-name: rotate, stroke;
+  animation-iteration-count: infinite, infinite;
+  animation-timing-function: ease, cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  stroke-dasharray: 320px; }
+
+.delay2 {
+  animation-delay: 0.5s; }
+
+.delay3 {
+  animation-delay: 0.75s; }
+
+.delay4 {
+  animation-delay: 1s; }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0); }
+  to {
+    transform: rotate(3turn); } }
+
+@keyframes stroke {
+  from {
+    stroke-dashoffset: 0; }
+  50% {
+    stroke-dashoffset: 300; }
+  to {
+    stroke-dashoffset: 0; } }
+
+.circle {
+  display: none;
+  width: 16px;
+  height: 16px; }
+
+body {
+  margin: 0;
+  border: 0 none;
+  padding: 0;
+  text-align: center;
+  background-color: #222226;
+  font-family: 'Noto Sans', Arial, sans-serif; }
+
+/* Canvas / wrapper
+ * ================ */
+#container {
+  display: inline-block;
+  /* scale with canvas */
+  vertical-align: top;
+  /* prevent extra height */
+  position: relative;
+  /* root for absolutely positioned overlay */
+  margin: 0;
+  border: 0 none;
+  padding: 0;
+  background-color: #454C62; }
+
+#canvas {
+  display: block;
+  margin: 0 auto;
+  color: white; }
+
+#canvas:focus {
+  outline: none; }
+
+/* Status display
+ * ============== */
+#status {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* don't consume click events - make children visible explicitly */
+  visibility: hidden; }
+
+#status-progress-logo {
+  width: 0;
+  height: 100%; }
+
+#status-progress-bar {
+  height: 12px;
+  width: 100%;
+  position: relative;
+  top: 40px;
+  background-color: #38363A;
+  border: 2px solid white;
+  padding: 1px;
+  border-radius: 2px; }
+
+#status-progress-bar-inner {
+  height: 100%;
+  box-sizing: border-box;
+  transition: width 0.5s linear;
+  border: 1px solid #222223;
+  box-shadow: 0 0 1px 1px #27282E;
+  border-radius: 3px;
+  background-image: linear-gradient(45deg, blue, green 40%, red); }
+
+#status-notice {
+  margin: 0 100px;
+  line-height: 1.3;
+  visibility: visible;
+  padding: 4px 6px;
+  visibility: visible; }
+
+/* Debug output
+ * ============ */
+#output-panel {
+  display: none;
+  max-width: 700px;
+  font-size: small;
+  margin: 6px auto 0;
+  padding: 0 4px 4px;
+  text-align: left;
+  line-height: 2.2; }
+
+#output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+#output-container {
+  padding: 6px;
+  background-color: #2c2a32;
+  box-shadow: inset 0 0 1px 1px #232127;
+  color: #bbb; }
+
+#output-scroll {
+  line-height: 1;
+  height: 12em;
+  overflow-y: scroll;
+  white-space: pre-wrap;
+  font-size: small;
+  font-family: "Lucida Console", Monaco, monospace; }
