@@ -17,8 +17,8 @@ var game = new Engine;
 	var initializing = true;
 	var statusMode = 'hidden';
 
-	// setStatusMode('indeterminate');
-	setStatusMode('progress');
+	setStatusMode('indeterminate');
+	// setStatusMode('progress');
 	game.setCanvas(canvas);
 	game.setAsmjsMemorySize(MEMORY_SIZE);
 
@@ -127,14 +127,14 @@ var game = new Engine;
 		});
 	}
 
-	// game.start(BASENAME + '.pck').then(() => {
-	// 	setStatusMode('hidden');
-	// 	initializing = false;
-	// }, err => {
-	// 	if (DEBUG_ENABLED)
-	// 		printError(err.message);
-	// 	setStatusNotice(err.message);
-	// 	setStatusMode('notice');
-	// 	initializing = false;
-	// });
+	game.start(BASENAME + '.pck').then(() => {
+		setStatusMode('hidden');
+		initializing = false;
+	}, err => {
+		if (DEBUG_ENABLED)
+			printError(err.message);
+		setStatusNotice(err.message);
+		setStatusMode('notice');
+		initializing = false;
+	});
 })();

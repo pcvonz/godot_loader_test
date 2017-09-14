@@ -11,6 +11,15 @@
   border-radius: 0;
   width: 67%; }
 
+$blue: #478CBF; 
+$lightblue:#56a7e4; 
+$lighterblue: #7dc0f2; 
+$lightestblue: #afd5f2; 
+$green: #32c994;
+$darkblue: #454c62;
+$white: #e0e0e0;
+$red: #fc9c9c;
+
 .blue {
   stroke: #478CBF; }
 
@@ -138,14 +147,27 @@ body {
   border-radius: 2px; }
 
 #status-progress-bar-inner {
+  transition: width .2s linear;
   height: 100%;
   box-sizing: border-box;
-  transition: width 0.5s linear;
   border: 1px solid #222223;
   box-shadow: 0 0 1px 1px #27282E;
   border-radius: 3px;
-  background-image: linear-gradient(45deg, blue, green 40%, red); }
+  background-image: linear-gradient(45deg, $blue,  25%, $white, 25%, $white, 75%, $blue,  75%, $blue);
+  background-size: 40px 10px;
+  background-repeat: repeat;
+  animation-duration: 6s;
+  animation-name: progress;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
 
+@keyframes progress {
+  from {
+    background-position-x: 0; }
+  to {
+    background-position-x: 200px; }
+}
 #status-notice {
   margin: 0 100px;
   line-height: 1.3;
